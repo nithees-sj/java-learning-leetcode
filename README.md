@@ -1,2 +1,2 @@
-# java-learning-leetcode
-Leet Code Problems
+# Leetcode-Problems
+Leet Code Problems Solving
