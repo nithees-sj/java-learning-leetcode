@@ -1,38 +1,38 @@
 class CustomStack {
-    Stack<Integer> s ;
-    int size = 0;
+    int[] stackArray;
+    int currentIndex;
+
     public CustomStack(int maxSize) {
-        s = new Stack<>();
-        size = maxSize ;
+        this.stackArray = new int[maxSize];
+        this.currentIndex = -1;
     }
     
     public void push(int x) {
-        if(s.size() < size){
-            s.push(x);
+        if(currentIndex < stackArray.length-1) {
+            stackArray[++currentIndex] = x;
         }
     }
     
     public int pop() {
-        if(!s.isEmpty()){
-            return s.pop();
+        if(currentIndex >= 0) {
+            return stackArray[currentIndex--];
+        }else{
+            return -1;
         }
-        return -1 ;
     }
     
     public void increment(int k, int val) {
-        Stack<Integer> temp = new Stack<>();
-        int i = 1 ;
-        while(!s.isEmpty()){
-            temp.push(s.pop());
-        }
-
-        while(!temp.isEmpty()){
-            if(i <= k){
-             s.push(temp.pop() + val);
-            }else{
-             s.push(temp.pop());
-            }
-            i++;
+        int limit = Math.min(k, currentIndex+1);
+        for(int i=0; i<limit; i++) {
+            stackArray[i] += val;
         }
     }
 }
+
+/**
+ * Your CustomStack object will be instantiated and called as such:
+ * CustomStack obj = new CustomStack(maxSize);
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * obj.increment(k,val);
+ */
